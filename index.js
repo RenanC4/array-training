@@ -19,8 +19,8 @@ const inventorsBornIn1500 = inventors.filter((inventor) => {
   return inventor.year >= 1500 && inventor.year <= 1599;
 });
 
-console.table(inventorsBornIn1500);
-
+//console.table(inventorsBornIn1500);
+console.table(inventors);
 // Array.prototype.map()
 // 2. Give us an array of the inventors first and last names
 
@@ -29,7 +29,7 @@ inventors.map((inventor) => {
   invent = [...invent, { first: inventor.first, last: inventor.last }];
 });
 
-console.log(invent);
+//console.log(invent);
 
 // Array.prototype.sort()
 // 3. Sort the inventors by birthdate, oldest to youngest
@@ -44,7 +44,7 @@ let sorted = inventors.sort(function (i1, i2) {
   return 0;
 });
 
-console.log(sorted);
+//console.log(sorted);
 
 // Array.prototype.sort()
 // 3.1 Sort the inventors by who lived the most
@@ -61,4 +61,27 @@ sorted = inventors.sort(function (i1, i2) {
   return 0;
 });
 
-console.log(sorted);
+//console.log(sorted);
+
+// Array.prototype.reduce()
+// 4. How many years did all the inventors live all together?
+const totalYears = inventors.reduce((total, inventor) => {
+  return total + (inventor.passed - inventor.year);
+}, 0);
+console.log(totalYears);
+
+// 5. Sort the inventors by years lived
+
+sorted = inventors.sort(function (i1, i2) {
+  i1.age = i1.passed - i1.year;
+  i2.age = i2.passed - i2.year;
+  if (i1.age < i2.age) {
+    return 1;
+  }
+  if (i1.age > i2.age) {
+    return -1;
+  }
+  return 0;
+});
+
+//console.log("lived", sorted);
